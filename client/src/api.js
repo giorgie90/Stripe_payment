@@ -49,6 +49,35 @@ const getProductDetails = options => {
     });
 };
 
+const setProductDetails = (currency, amount) => {
+  return window
+    .fetch(`/product-details`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        currency: currency,
+        amount: amount
+      })
+    })
+    .then(res => {
+      if (res.status === 200) {
+        return res.json();
+      } else {
+        return null;
+      }
+    })
+    .then(data => {
+      if (!data || data.error) {
+        console.log("API error:", { data });
+        throw Error("API Error");
+      } else {
+        return data;
+      }
+    });
+}
+
 const getPublicStripeKey = options => {
   return window
     .fetch(`/public-key`, {
@@ -77,7 +106,7 @@ const getPublicStripeKey = options => {
 const api = {
   createPaymentIntent,
   getPublicStripeKey: getPublicStripeKey,
-  getProductDetails: getProductDetails
+  getProductDetails: getProductDetails,setProductDetails,
 };
 
 export default api;

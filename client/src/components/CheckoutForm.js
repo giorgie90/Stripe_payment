@@ -64,11 +64,11 @@ export default function CheckoutForm() {
   const renderSuccess = () => {
     return (
       <div className="sr-field-success message">
-        <h1>Your test payment succeeded</h1>
-        <p>View PaymentIntent response:</p>
+        <h1>Your payment succeeded</h1>
+        {/* <p>View PaymentIntent response:</p>
         <pre className="sr-callout">
           <code>{JSON.stringify(metadata, null, 2)}</code>
-        </pre>
+        </pre> */}
       </div>
     );
   };
@@ -100,7 +100,6 @@ export default function CheckoutForm() {
             minimumFractionDigits: 2,
           })}{" "}
         </h1>
-        <h4>Pre-order the Pasha package</h4>
 
         <div className="sr-combo-inputs">
           <div className="sr-combo-inputs-row">
@@ -122,7 +121,7 @@ export default function CheckoutForm() {
           </div>
         </div>
 
-        {error && <div className="message sr-field-error">{error}</div>}
+        {error && <div className="message sr-field-error">Please input all informations.</div>}
 
         <button
           className="btn"
